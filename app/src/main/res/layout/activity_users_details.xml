@@ -51,7 +51,7 @@
             android:text="@string/name" />
 
         <TextView
-            android:id="@+id/neighbours_info_adress"
+            android:id="@+id/neighbours_info_address"
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:text="TextView" />

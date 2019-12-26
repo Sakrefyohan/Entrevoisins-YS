@@ -16,16 +16,16 @@ import butterknife.ButterKnife;
 
 public class UsersDetails extends AppCompatActivity  {
 
-    private ImageView ;     //neighbours_info_picture;
-    private Button ;        //neighbours_info_fav_button;
-    private TextView ;      //neighbours_info_name_small;
-    private TextView ;      //neighbours_info_adress;
-    private TextView ;      //neighbours_info_number;
-    private TextView ;      //neighbours_info_link;
-    private TextView ;      //neighbours_info_apropos_title;
-    private TextView ;      //neighbours_info_apropos_text;
-    private TextView ;      //neighbours_info_name_big;
-    private TextView ;      //neighbours_info_return_button;
+    private ImageView mInfo;     //neighbours_info_picture;
+    private Button mFavButton;        //neighbours_info_fav_button;
+    private TextView mNameSmall;      //neighbours_info_name_small;
+    private TextView mAddress;      //neighbours_info_address;
+    private TextView mNumber;      //neighbours_info_number;
+    private TextView mLink;      //neighbours_info_link;
+    private TextView mAproposTitle;      //neighbours_info_apropos_title;
+    private TextView mAproposText;      //neighbours_info_apropos_text;
+    private TextView mNameBig;      //neighbours_info_name_big;
+    private TextView mReturnButton;      //neighbours_info_return_button;
 
 
 
@@ -37,7 +37,17 @@ public class UsersDetails extends AppCompatActivity  {
         setContentView(R.layout.activity_users_details);
         ButterKnife.bind(this);
 
-        mInfo = (TextView) findViewById(R.id.activity_main_greeting_txt);
+        mInfo = findViewById(R.id.neighbours_info_picture);
+        mFavButton = findViewById(R.id.neighbours_info_fav_button);
+        mNameSmall = findViewById(R.id.neighbours_info_name_small);
+        mAddress = findViewById(R.id.neighbours_info_address);
+        mNumber = findViewById(R.id.neighbours_info_number);
+        mLink = findViewById(R.id.neighbours_info_link);
+        mAproposTitle = findViewById(R.id.neighbours_info_apropos_title);
+        mAproposText = findViewById(R.id.neighbours_info_apropos_text);
+        mNameBig = findViewById(R.id.neighbours_info_name_big);
+        mReturnButton = findViewById(R.id.neighbours_info_return_button);
+
 
 
 
