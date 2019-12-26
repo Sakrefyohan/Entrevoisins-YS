@@ -3,6 +3,7 @@ package com.openclassrooms.entrevoisins.ui.users_details;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import org.w3c.dom.Text;
 
 import butterknife.ButterKnife;
 
-public class UsersDetails extends AppCompatActivity  {
+public class UsersDetails extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mInfo;     //neighbours_info_picture;
     private Button mFavButton;        //neighbours_info_fav_button;
@@ -49,7 +50,44 @@ public class UsersDetails extends AppCompatActivity  {
         mReturnButton = findViewById(R.id.neighbours_info_return_button);
 
 
+        // Clique sur les boutons
+        mReturnButton.setOnClickListener(this);
+        mFavButton.setOnClickListener(this);
+
+        // Tag des boutons
+        mReturnButton.setTag(1);
+        mFavButton.setTag(2);
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        int responseIndex = (int) v.getTag();
+
+        switch (responseIndex){
+            case 1:
+                //retour a la liste des voisins
+                break;
+            case 2:
+                // Mettre/enlever le voisin en favoris
+
+
+               // Controle : si le voisin est déjà en favoris alors on le retire, sinon on l'ajout en favoris
+               //
+               //if (laVariableDuVoisin == true){
+               //  laVariableDuVoisin = False;
+               //  [On change la couleur du bouton fav]
+               // }Else {
+               // laVariableDuVoisin = True;
+               //  }
+               //
+               //
+               //
+                break;
+        }
 
 
     }
 }
+
