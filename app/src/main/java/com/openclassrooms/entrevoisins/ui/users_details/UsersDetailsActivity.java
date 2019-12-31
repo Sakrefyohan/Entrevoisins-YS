@@ -15,7 +15,9 @@ import org.w3c.dom.Text;
 
 import butterknife.ButterKnife;
 
-public class UsersDetails extends AppCompatActivity implements View.OnClickListener {
+public class UsersDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final static int RETURNBUTTON = 1;
 
     private ImageView mInfo;     //neighbours_info_picture;
     private Button mFavButton;        //neighbours_info_fav_button;
@@ -47,7 +49,7 @@ public class UsersDetails extends AppCompatActivity implements View.OnClickListe
         mAproposTitle = findViewById(R.id.neighbours_info_apropos_title);
         mAproposText = findViewById(R.id.neighbours_info_apropos_text);
         mNameBig = findViewById(R.id.neighbours_info_name_big);
-        mReturnButton = findViewById(R.id.neighbours_info_return_button);
+
 
 
         // Clique sur les boutons
@@ -81,8 +83,6 @@ public class UsersDetails extends AppCompatActivity implements View.OnClickListe
                // }Else {
                // laVariableDuVoisin = True;
                //  }
-               //
-               //
                //
                 break;
         }
