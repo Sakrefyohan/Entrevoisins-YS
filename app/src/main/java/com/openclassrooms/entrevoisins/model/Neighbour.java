@@ -22,6 +22,9 @@ public class Neighbour {
      * @param name
      * @param avatarUrl
      */
+
+    boolean neighbourIsFav = true;
+
     public Neighbour(Integer id, String name, String avatarUrl) {
         this.id = id;
         this.name = name;

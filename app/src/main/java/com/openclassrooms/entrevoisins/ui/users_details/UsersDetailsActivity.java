@@ -7,12 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourPagerAdapter;
-
 import org.w3c.dom.Text;
-
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
