@@ -23,12 +23,15 @@ public class Neighbour {
      * @param avatarUrl
      */
 
-    boolean neighbourIsFav = true;
+    private boolean neighbourIsFav;
+
+
 
     public Neighbour(Integer id, String name, String avatarUrl) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
+        this.neighbourIsFav = false;
     }
 
     public Integer getId() {
@@ -54,6 +57,11 @@ public class Neighbour {
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
+
+    public boolean getNeighbourIsFav() {return this.neighbourIsFav;}
+
+    public void setNeighbourIsFav(boolean neighbourIsFav) {this.neighbourIsFav = neighbourIsFav;}
+
 
     @Override
     public boolean equals(Object o) {

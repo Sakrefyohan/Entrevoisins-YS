@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -13,8 +14,10 @@ import android.view.ViewGroup;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.UsersDetailsEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.ui.users_details.UsersDetailsActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,14 +30,24 @@ public class NeighbourFragment extends Fragment {
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
+    private final static String NEIGHBOURFAV = "0";
+    private boolean neighbourIsFavFragment;
 
 
     /**
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+
+    //Ajout d'un boolean isFav
+
+    public static NeighbourFragment newInstance(boolean isFav) {
         NeighbourFragment fragment = new NeighbourFragment();
+        //Creation du bundle de favoris
+        Bundle favoriteNeighbour= new Bundle();
+        //Ajout de la valeur dans le bundle
+        favoriteNeighbour.putBoolean(NEIGHBOURFAV, isFav);
+        fragment.setArguments(favoriteNeighbour);
         return fragment;
     }
 
@@ -42,6 +55,8 @@ public class NeighbourFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getNeighbourApiService();
+        neighbourIsFavFragment = savedInstanceState.getBoolean(NEIGHBOURFAV);
+
     }
 
     @Override
@@ -84,5 +99,11 @@ public class NeighbourFragment extends Fragment {
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
+    }
+
+    @Subscribe
+    public void onUserDetails(UsersDetailsEvent event) {
+    Intent userDetails = new Intent(ListNeighbourActivity.this, UsersDetailsActivity.class) ;
+    startActivity(userDetails);
     }
 }

@@ -15,20 +15,9 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class UsersDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class UsersDetailsActivity extends AppCompatActivity {
 
-   // private ImageView mInfo;          //neighbours_info_picture;
-   // private Button mFavButton;        //neighbours_info_fav_button;
-   // private TextView mNameSmall;      //neighbours_info_name_small;
-   // private TextView mAddress;        //neighbours_info_address;
-   // private TextView mNumber;         //neighbours_info_number;
-   // private TextView mLink;           //neighbours_info_link;
-   // private TextView mAproposTitle;   //neighbours_info_apropos_title;
-   // private TextView mAproposText;    //neighbours_info_apropos_text;
-   // private TextView mNameBig;        //neighbours_info_name_big;
-
-
-    @BindView(R.id.neighbours_info_picture) ImageView mPicture;
+   @BindView(R.id.neighbours_info_picture) ImageView mPicture;
     @BindView(R.id.neighbours_info_fav_button)Button mFavButton;
     @BindView(R.id.neighbours_info_name_small)TextView mNameSmall;
     @BindView(R.id.neighbours_info_address) TextView mAddress;
@@ -37,6 +26,7 @@ public class UsersDetailsActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.neighbours_info_apropos_title) TextView mAproposTitle;
     @BindView(R.id.neighbours_info_apropos_text)TextView mAproposText;
     @BindView(R.id.neighbours_info_name_big)TextView mNameBig;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +42,9 @@ public class UsersDetailsActivity extends AppCompatActivity implements View.OnCl
     void setFavButton(View view){
 
         if(neighbourIsFav) {
-            neighbourIsFav = False;
-        }else {neighbourIsFav = True;}
-    }
+        neighbourIsFav = False;
+    }else {neighbourIsFav = True;}
+}
 
 
 }
