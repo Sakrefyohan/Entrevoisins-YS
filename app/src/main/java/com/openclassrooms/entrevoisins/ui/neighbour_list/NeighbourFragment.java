@@ -101,9 +101,12 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
+
+
     @Subscribe
     public void onUserDetails(UsersDetailsEvent event) {
-    Intent userDetails = new Intent(ListNeighbourActivity.this, UsersDetailsActivity.class) ;
+
+    Intent userDetails = new Intent(getContext().ListNeighbourActivity, UsersDetailsActivity.class) ;
     startActivity(userDetails);
     }
 }
