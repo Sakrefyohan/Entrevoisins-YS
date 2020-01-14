@@ -1,13 +1,20 @@
 package com.openclassrooms.entrevoisins.ui.users_details;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourPagerAdapter;
 import org.w3c.dom.Text;
 import butterknife.BindView;
@@ -15,10 +22,15 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment.NEIGHBOUR;
+
+
 public class UsersDetailsActivity extends AppCompatActivity {
 
+
+
    @BindView(R.id.neighbours_info_picture) ImageView mPicture;
-    @BindView(R.id.neighbours_info_fav_button)Button mFavButton;
+    @BindView(R.id.neighbours_info_fav_button) FloatingActionButton mFavButton;
     @BindView(R.id.neighbours_info_name_small)TextView mNameSmall;
     @BindView(R.id.neighbours_info_address) TextView mAddress;
     @BindView(R.id.neighbours_info_number) TextView mNumber;
@@ -27,12 +39,33 @@ public class UsersDetailsActivity extends AppCompatActivity {
     @BindView(R.id.neighbours_info_apropos_text)TextView mAproposText;
     @BindView(R.id.neighbours_info_name_big)TextView mNameBig;
 
+    private Neighbour neighbour;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_details);
         ButterKnife.bind(this);
+
+       neighbour = (Neighbour) getIntent().getSerializableExtra(NEIGHBOUR);
+       mNameBig.setText(neighbour.getName());
+       mNameSmall.setText(neighbour.getName());
+       mAddress.setText(neighbour.getAddress());
+       mNumber.setText(neighbour.getNumber());
+       mLink.setText(neighbour.getLink());
+       mAproposText.setText(neighbour.getAproposText());
+
+        /**
+         * Using glide to charge picture for the neighbour
+         * */
+
+        Glide.with(this).load(neighbour.getAvatarUrl()).into(mPicture);
+
+
+
+       //Completer le xml ici
+       //Faire le if else de l'etat du bouton de départ
 
     }
 
@@ -41,9 +74,19 @@ public class UsersDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.neighbours_info_fav_button)
     void setFavButton(View view){
 
-        if(neighbourIsFav) {
-        neighbourIsFav = False;
-    }else {neighbourIsFav = True;}
+
+
+        if(neighbour.getNeighbourIsFav()) {
+            neighbour.setNeighbourIsFav(false);
+        Resources iconFav = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(iconFav, R.drawable.ic_star_nofav, null);
+        mFavButton.setImageDrawable(drawable);
+
+    }else {
+            neighbour.setNeighbourIsFav(true);
+            Resources iconFav = getResources();
+            Drawable drawable = ResourcesCompat.getDrawable(iconFav, R.drawable.ic_star_fav, null);
+            mFavButton.setImageDrawable(drawable);}
 }
 
 

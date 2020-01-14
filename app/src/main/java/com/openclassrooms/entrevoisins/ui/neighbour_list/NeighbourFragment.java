@@ -32,6 +32,7 @@ public class NeighbourFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private final static String NEIGHBOURFAV = "0";
     private boolean neighbourIsFavFragment;
+    public final static String NEIGHBOUR = "NEIGHBOUR_PARAMETERS";
 
 
     /**
@@ -39,7 +40,10 @@ public class NeighbourFragment extends Fragment {
      * @return @{@link NeighbourFragment}
      */
 
-    //Ajout d'un boolean isFav
+    /**
+     *
+     *  Adding a fav Boolean isFav
+     */
 
     public static NeighbourFragment newInstance(boolean isFav) {
         NeighbourFragment fragment = new NeighbourFragment();
@@ -75,8 +79,17 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        //todo: boolean de fragment selon si la list est fav ou non
+
+        if(neighbourIsFavFragment){
+            mNeighbours = mApiService.getFavoriteNeighbour();
+            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+
+        }else{
+            mNeighbours = mApiService.getNeighbours();
+            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));}
+
+
     }
 
     @Override
@@ -106,7 +119,8 @@ public class NeighbourFragment extends Fragment {
     @Subscribe
     public void onUserDetails(UsersDetailsEvent event) {
 
-    Intent userDetails = new Intent(getContext().ListNeighbourActivity, UsersDetailsActivity.class) ;
+    Intent userDetails = new Intent(getContext(), UsersDetailsActivity.class);
+    userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
     startActivity(userDetails);
     }
 }

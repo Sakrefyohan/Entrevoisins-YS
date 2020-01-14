@@ -1,11 +1,12 @@
 package com.openclassrooms.entrevoisins.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour {
+public class Neighbour implements Serializable {
 
     /** Identifier */
     private Integer id;
@@ -16,21 +17,42 @@ public class Neighbour {
     /** Avatar */
     private String avatarUrl;
 
+    /** Phone number */
+    private String number;
+
+    /** Address contact */
+    private String address;
+
+    /** Mail Address */
+    private String link;
+
+    /**Presentation text*/
+    private String aproposText;
+
+
     /**
      * Constructor
      * @param id
      * @param name
      * @param avatarUrl
+     * @param number
+     * @param address
+     * @param link
+     * @param aproposText
      */
 
     private boolean neighbourIsFav;
 
 
 
-    public Neighbour(Integer id, String name, String avatarUrl) {
+    public Neighbour(Integer id, String name, String avatarUrl, String number, String address, String link, String aproposText) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
+        this.number = number;
+        this.address = address;
+        this.link = link;
+        this.aproposText = aproposText;
         this.neighbourIsFav = false;
     }
 
@@ -62,6 +84,21 @@ public class Neighbour {
 
     public void setNeighbourIsFav(boolean neighbourIsFav) {this.neighbourIsFav = neighbourIsFav;}
 
+    public String getNumber() {return number;}
+
+    public void setNumber(String number) {this.number = number;}
+
+    public String getAddress() {return address;}
+
+    public void setAddress(String address) {this.address = address;}
+
+    public String getLink() {return link;}
+
+    public void setLink(String link) {this.link = link;}
+
+    public String getAproposText() {return aproposText;}
+
+    public void setAproposText(String aproposText) {this.aproposText = aproposText;}
 
     @Override
     public boolean equals(Object o) {
