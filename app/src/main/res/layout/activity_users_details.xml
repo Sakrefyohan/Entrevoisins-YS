@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#B2F0F0F0"
+    >
 
     <ImageView
         tools:ignore="contentDescription"
@@ -26,7 +28,9 @@
         app:layout_constraintTop_toBottomOf="@id/neighbours_info_picture"
         app:layout_constraintEnd_toEndOf="@id/neighbours_info_picture"
         app:layout_constraintBottom_toBottomOf="@id/neighbours_info_picture"
-        android:layout_marginEnd="30dp"/>
+        android:layout_marginEnd="30dp"
+        android:elevation="2dp"/>
+
 
 
     <LinearLayout
@@ -42,8 +46,8 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="26dp"
         android:layout_marginRight="26dp"
-        >
-
+        android:background="@drawable/ic_shadowbox"
+        android:elevation="1dp">
 
 
         <TextView
@@ -54,9 +58,18 @@
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textColor="#000"
+            android:textColor="#383838"
+
 
             />
+
+        <ImageView
+            tools:ignore="contentDescription"
+            android:contentDescription=""
+            android:id="@+id/neighbours_ic_call"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_location"/>
 
         <TextView
             android:id="@+id/neighbours_info_address"
@@ -66,10 +79,15 @@
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textColor="#000"
+            android:textColor="#464646"/>
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription=""
+            android:src="@drawable/ic_call"
+            tools:ignore="contentDescription" />
 
-            />
         <TextView
             android:id="@+id/neighbours_info_number"
             android:layout_width="match_parent"
@@ -78,10 +96,14 @@
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textColor="#000"
+            android:textColor="#464646" />
 
-
-            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription=""
+            android:src="@drawable/ic_network"
+            tools:ignore="contentDescription" />
 
         <TextView
             android:id="@+id/neighbours_info_link"
@@ -91,10 +113,9 @@
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textColor="#000"
+            android:textColor="#464646" />
 
-            />
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutbottom"
@@ -108,7 +129,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayouttop">
+        app:layout_constraintTop_toBottomOf="@id/linearLayouttop"
+        android:background="@drawable/ic_shadowbox"
+        android:elevation="1dp" >
 
 
         <TextView
@@ -117,10 +140,10 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:textSize="25sp"
-            android:textColor="#000"
+            android:textColor="#383838"
             android:text="A propos de moi" />
 
         <TextView
@@ -144,7 +167,7 @@
         android:layout_marginBottom="30dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:textColor="#000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/neighbours_info_picture"
         app:layout_constraintStart_toStartOf="@+id/neighbours_info_picture"
