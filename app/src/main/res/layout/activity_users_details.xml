@@ -59,7 +59,7 @@
             android:text="Caroline"
             android:textColor="#383838"
             android:textSize="33sp" />
-        <!--Todo: Ajouter les trait de séparation rectangle drwable -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -181,7 +181,7 @@
             android:text="A propos de moi"
             android:textColor="#383838"
             android:textSize="33sp" />
-        <!--TODO : Trait de separation -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
