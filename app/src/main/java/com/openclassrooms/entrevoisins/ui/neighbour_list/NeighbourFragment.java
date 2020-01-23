@@ -59,7 +59,7 @@ public class NeighbourFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getNeighbourApiService();
-        neighbourIsFavFragment = savedInstanceState.getBoolean(NEIGHBOURFAV);
+        neighbourIsFavFragment = getArguments().getBoolean(NEIGHBOURFAV);
 
     }
 
@@ -71,7 +71,7 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        initList();
+
         return view;
     }
 
@@ -79,7 +79,7 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        //todo: boolean de fragment selon si la list est fav ou non
+
 
         if(neighbourIsFavFragment){
             mNeighbours = mApiService.getFavoriteNeighbour();
@@ -96,6 +96,12 @@ public class NeighbourFragment extends Fragment {
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
     }
 
     @Override

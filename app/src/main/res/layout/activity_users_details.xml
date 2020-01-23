@@ -4,156 +4,199 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B2F0F0F0"
-    >
+    android:background="#B2CECECE">
 
     <ImageView
-        tools:ignore="contentDescription"
-        android:contentDescription="@string/app_name"
         android:id="@+id/neighbours_info_picture"
         android:layout_width="match_parent"
         android:layout_height="290dp"
+        android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="contentDescription"
         tools:srcCompat="@tools:sample/avatars" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/neighbours_info_fav_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_star_nofav"
-        app:layout_constraintTop_toBottomOf="@id/neighbours_info_picture"
-        app:layout_constraintEnd_toEndOf="@id/neighbours_info_picture"
-        app:layout_constraintBottom_toBottomOf="@id/neighbours_info_picture"
         android:layout_marginEnd="30dp"
-        android:elevation="2dp"/>
-
+        android:elevation="2dp"
+        android:src="@drawable/ic_star_nofav"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@id/neighbours_info_picture"
+        app:layout_constraintEnd_toEndOf="@id/neighbours_info_picture"
+        app:layout_constraintTop_toBottomOf="@id/neighbours_info_picture" />
 
 
     <LinearLayout
         android:id="@+id/linearLayouttop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/ic_shadowbox"
+        android:elevation="1dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/neighbours_info_picture"
         app:layout_constraintBottom_toTopOf="@id/linearLayoutbottom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginRight="26dp"
-        android:background="@drawable/ic_shadowbox"
-        android:elevation="1dp">
+        app:layout_constraintTop_toBottomOf="@id/neighbours_info_picture">
 
 
         <TextView
             android:id="@+id/neighbours_info_name_small"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="25dp"
+            android:text="Caroline"
             android:textColor="#383838"
-
-
-            />
-
-        <ImageView
-            tools:ignore="contentDescription"
-            android:contentDescription=""
-            android:id="@+id/neighbours_ic_call"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_location"/>
-
-        <TextView
-            android:id="@+id/neighbours_info_address"
+            android:textSize="33sp" />
+        <!--Todo: Ajouter les trait de séparation rectangle drwable -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#464646"/>
+            android:layout_height="1dp"
+            android:layout_weight="0"
+            android:background="#BFD3D3D3" />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription=""
-            android:src="@drawable/ic_call"
-            tools:ignore="contentDescription" />
-
-        <TextView
-            android:id="@+id/neighbours_info_number"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#464646" />
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription=""
-            android:src="@drawable/ic_network"
-            tools:ignore="contentDescription" />
+            <ImageView
+                android:id="@+id/neighbours_ic_call"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription=""
+                android:gravity="center_vertical"
+                android:src="@drawable/ic_location"
+                tools:ignore="contentDescription" />
 
-        <TextView
-            android:id="@+id/neighbours_info_link"
+            <TextView
+                android:id="@+id/neighbours_info_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="#464646"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#464646" />
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription=""
+                android:src="@drawable/ic_call"
+                tools:ignore="contentDescription" />
+
+            <TextView
+                android:id="@+id/neighbours_info_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="#464646"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription=""
+                android:src="@drawable/ic_network"
+                tools:ignore="contentDescription" />
+
+            <TextView
+                android:id="@+id/neighbours_info_link"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="#464646"
+                android:textSize="15sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutbottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginRight="26dp"
+        android:background="@drawable/ic_shadowbox"
+        android:elevation="1dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayouttop"
-        android:background="@drawable/ic_shadowbox"
-        android:elevation="1dp" >
+        app:layout_constraintTop_toBottomOf="@id/linearLayouttop">
 
 
         <TextView
             android:id="@+id/neighbours_info_apropos_title"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="20dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
+            android:paddingTop="5dp"
             android:paddingRight="15dp"
-            android:textSize="25sp"
+            android:paddingBottom="10dp"
+            android:text="A propos de moi"
             android:textColor="#383838"
-            android:text="A propos de moi" />
+            android:textSize="33sp" />
+        <!--TODO : Trait de separation -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="0"
+            android:background="#BFD3D3D3" />
 
         <TextView
             android:id="@+id/neighbours_info_apropos_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-             />
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp" />
 
 
     </LinearLayout>
@@ -161,18 +204,17 @@
     <TextView
         android:id="@+id/neighbours_info_name_big"
         android:layout_width="173dp"
-        android:layout_height="36dp"
-
+        android:layout_height="40dp"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="30dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="@+id/neighbours_info_picture"
         app:layout_constraintStart_toStartOf="@+id/neighbours_info_picture"
 
-         />
+        />
 
 
 </android.support.constraint.ConstraintLayout>

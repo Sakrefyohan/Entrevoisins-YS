@@ -23,6 +23,7 @@ import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAsserti
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
+//Test Instrumentalisé
 
 /**
  * Test class for list of neighbours

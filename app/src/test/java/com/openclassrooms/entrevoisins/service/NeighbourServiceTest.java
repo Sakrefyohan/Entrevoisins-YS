@@ -21,6 +21,7 @@ import static org.junit.Assert.assertThat;
 public class NeighbourServiceTest {
 
     private NeighbourApiService service;
+    private Neighbour mNeighbour;
 
     @Before
     public void setup() {
@@ -40,4 +41,11 @@ public class NeighbourServiceTest {
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
+
+    @Test
+    public void SetAvatarImage(){
+        Neighbour setAvatarImage = mNeighbour.getAvatarUrl().get;
+
+    }
+
 }

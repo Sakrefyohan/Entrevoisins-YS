@@ -14,9 +14,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourPagerAdapter;
+
 import org.w3c.dom.Text;
+
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -27,17 +31,27 @@ import static com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragmen
 
 public class UsersDetailsActivity extends AppCompatActivity {
 
+    private NeighbourApiService mApiService;
 
 
-   @BindView(R.id.neighbours_info_picture) ImageView mPicture;
-    @BindView(R.id.neighbours_info_fav_button) FloatingActionButton mFavButton;
-    @BindView(R.id.neighbours_info_name_small)TextView mNameSmall;
-    @BindView(R.id.neighbours_info_address) TextView mAddress;
-    @BindView(R.id.neighbours_info_number) TextView mNumber;
-    @BindView(R.id.neighbours_info_link) TextView mLink;
-    @BindView(R.id.neighbours_info_apropos_title) TextView mAproposTitle;
-    @BindView(R.id.neighbours_info_apropos_text)TextView mAproposText;
-    @BindView(R.id.neighbours_info_name_big)TextView mNameBig;
+    @BindView(R.id.neighbours_info_picture)
+    ImageView mPicture;
+    @BindView(R.id.neighbours_info_fav_button)
+    FloatingActionButton mFavButton;
+    @BindView(R.id.neighbours_info_name_small)
+    TextView mNameSmall;
+    @BindView(R.id.neighbours_info_address)
+    TextView mAddress;
+    @BindView(R.id.neighbours_info_number)
+    TextView mNumber;
+    @BindView(R.id.neighbours_info_link)
+    TextView mLink;
+    @BindView(R.id.neighbours_info_apropos_title)
+    TextView mAproposTitle;
+    @BindView(R.id.neighbours_info_apropos_text)
+    TextView mAproposText;
+    @BindView(R.id.neighbours_info_name_big)
+    TextView mNameBig;
 
     private Neighbour neighbour;
 
@@ -48,13 +62,13 @@ public class UsersDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_users_details);
         ButterKnife.bind(this);
 
-       neighbour = (Neighbour) getIntent().getSerializableExtra(NEIGHBOUR);
-       mNameBig.setText(neighbour.getName());
-       mNameSmall.setText(neighbour.getName());
-       mAddress.setText(neighbour.getAddress());
-       mNumber.setText(neighbour.getNumber());
-       mLink.setText(neighbour.getLink());
-       mAproposText.setText(neighbour.getAproposText());
+        neighbour = (Neighbour) getIntent().getSerializableExtra(NEIGHBOUR);
+        mNameBig.setText(neighbour.getName());
+        mNameSmall.setText(neighbour.getName());
+        mAddress.setText(neighbour.getAddress());
+        mNumber.setText(neighbour.getNumber());
+        mLink.setText(neighbour.getLink());
+        mAproposText.setText(neighbour.getAproposText());
 
         /**
          * Using glide to charge picture for the neighbour
@@ -63,31 +77,25 @@ public class UsersDetailsActivity extends AppCompatActivity {
         Glide.with(this).load(neighbour.getAvatarUrl()).into(mPicture);
 
 
+        //Expression ternaire
+        mFavButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), neighbour.getNeighbourIsFav() ? R.drawable.ic_star_fav : R.drawable.ic_star_nofav, null));
 
-       //Completer le xml ici
-       //Faire le if else de l'etat du bouton de départ
+
 
     }
 
     // Clique sur le bouton Fav
     // Modification de l'etat du voisin
     @OnClick(R.id.neighbours_info_fav_button)
-    void setFavButton(View view){
+    void setFavButton(View view) {
 
+        neighbour.setNeighbourIsFav(!neighbour.getNeighbourIsFav());
+        mApiService = DI.getNeighbourApiService();
+        mApiService.changeFavoriteNeighbour(neighbour.getId());
+        //Expression ternaire
+        mFavButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), neighbour.getNeighbourIsFav() ? R.drawable.ic_star_fav : R.drawable.ic_star_nofav, null));
 
-
-        if(neighbour.getNeighbourIsFav()) {
-            neighbour.setNeighbourIsFav(false);
-        Resources iconFav = getResources();
-        Drawable drawable = ResourcesCompat.getDrawable(iconFav, R.drawable.ic_star_nofav, null);
-        mFavButton.setImageDrawable(drawable);
-
-    }else {
-            neighbour.setNeighbourIsFav(true);
-            Resources iconFav = getResources();
-            Drawable drawable = ResourcesCompat.getDrawable(iconFav, R.drawable.ic_star_fav, null);
-            mFavButton.setImageDrawable(drawable);}
-}
+    }
 
 
 }
