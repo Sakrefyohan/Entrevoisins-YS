@@ -26,6 +26,7 @@
         <activity
             android:name=".ui.users_details.UsersDetailsActivity"
             android:label=""
+            android:theme="@style/AppThemeBarTransparent"
 
             android:parentActivityName=".ui.neighbour_list.ListNeighbourActivity">
 

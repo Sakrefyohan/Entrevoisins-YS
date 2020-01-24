@@ -1,5 +1,7 @@
 package com.openclassrooms.entrevoisins.service;
 
+import android.content.Intent;
+
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
@@ -11,6 +13,8 @@ import org.junit.runners.JUnit4;
 
 import java.util.List;
 
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment.NEIGHBOUR;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
@@ -21,7 +25,7 @@ import static org.junit.Assert.assertThat;
 public class NeighbourServiceTest {
 
     private NeighbourApiService service;
-    private Neighbour mNeighbour;
+
 
     @Before
     public void setup() {
@@ -42,10 +46,21 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
+    //Test créer
+
+    //Test Liste favoris de voisins
     @Test
-    public void SetAvatarImage(){
-        Neighbour setAvatarImage = mNeighbour.getAvatarUrl().get;
+    public void getNeighbourFavoritesWithSuccess(){
+        List<Neighbour> neighbours = service.getNeighbours();
+        service.changeFavoriteNeighbour(neighbours.get(0).getId());
+        service.changeFavoriteNeighbour(neighbours.get(1).getId());
+        service.changeFavoriteNeighbour(neighbours.get(2).getId());
+        List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
+        assertEquals(neighboursFavorites.size(),3);
 
     }
 
+    //TODO : Test de suppression de la liste des favoris
+
 }
+
