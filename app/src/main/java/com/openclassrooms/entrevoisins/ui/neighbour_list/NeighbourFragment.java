@@ -121,7 +121,6 @@ public class NeighbourFragment extends Fragment {
     }
 
 
-
     @Subscribe
     public void onUserDetails(UsersDetailsEvent event) {
 
