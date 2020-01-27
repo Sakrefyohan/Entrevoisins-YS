@@ -6,11 +6,17 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -86,6 +92,46 @@ public class NeighboursListTest {
         onView(withId(R.id.neighbours_info_picture)).check(matches(isDisplayed()));
     }
     //onView(allOf(withId(R.id.list_neighbours),isDisplayed()))
+    @Test
+    public void usernameIsDisplayInUsersDetails(){
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.list_neighbours),
+                        isDisplayed()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.neighbours_info_name_small)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void listDeleteUser() {
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.item_list_delete_button),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.list_neighbours),
+                                        1),
+                                2),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+    }
+    private static Matcher<View> childAtPosition(
+            final Matcher<View> parentMatcher, final int position) {
+
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
+    }
+
 
 
 }
