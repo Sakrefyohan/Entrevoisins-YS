@@ -22,6 +22,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
@@ -76,16 +77,15 @@ public class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
 
-    @Rule
-    public ActivityTestRule<ListNeighbourActivity> mActivityTestRule = new ActivityTestRule<>(ListNeighbourActivity.class);
-
     @Test
     public void listNeighbourActivityTest() {
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
-                        withParent(withId(R.id.container))));
+                        isDisplayed()));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.neighbours_info_picture)).check(matches(isDisplayed()));
     }
+    //onView(allOf(withId(R.id.list_neighbours),isDisplayed()))
 
 
 }
