@@ -22,13 +22,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
@@ -59,14 +62,24 @@ public class NeighboursListTest {
         assertThat(mActivity, notNullValue());
     }
 
-    /**
-     * We ensure that our recyclerview is displaying at least on item
-     */
     @Test
-    public void myNeighboursList_shouldNotBeEmpty() {
-        // First scroll to the position that needs to be matched and click on it.
-        onView(ViewMatchers.withId(R.id.list_neighbours))
-                .check(matches(hasMinimumChildCount(1)));
+    public void myNeighbourList_ClickOnContact_ShouldLaunchUsersDetails() {
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.list_neighbours),
+                        isDisplayed()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+        //Ici on check la présence de l'avatar pour prouver que l'activité c'est bien lancé
+        onView(withId(R.id.neighbours_info_picture)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void myNeighbourList_ClickOnContact_ShouldDisplayUsername(){
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.list_neighbours),
+                        isDisplayed()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+        //Checking if the username display well
+        onView(withId(R.id.neighbours_info_name_small)).check(matches(isDisplayed()));
     }
 
     /**
@@ -83,36 +96,64 @@ public class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
 
-    @Test
-    public void listNeighbourActivityTest() {
+        @Test
+    public void myNeighbourList_DisplayFavList_ShouldDisplayOnlyFavoritesNeighbour() {
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
-                        isDisplayed()));
+                        withParent(withId(R.id.container)),isDisplayed()));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
-        onView(withId(R.id.neighbours_info_picture)).check(matches(isDisplayed()));
-    }
-    //onView(allOf(withId(R.id.list_neighbours),isDisplayed()))
-    @Test
-    public void usernameIsDisplayInUsersDetails(){
-        ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.list_neighbours),
-                        isDisplayed()));
-        recyclerView.perform(actionOnItemAtPosition(0, click()));
-        onView(withId(R.id.neighbours_info_name_small)).check(matches(isDisplayed()));
-    }
 
-    @Test
-    public void listDeleteUser() {
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.item_list_delete_button),
+        ViewInteraction floatingActionButton = onView(
+                allOf(withId(R.id.neighbours_info_fav_button),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.list_neighbours),
-                                        1),
-                                2),
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        floatingActionButton.perform(click());
+
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(R.id.action_bar),
+                                        childAtPosition(
+                                                withId(R.id.action_bar_container),
+                                                0)),
+                                0),
                         isDisplayed()));
         appCompatImageButton.perform(click());
+
+        ViewInteraction tabView = onView(
+                allOf(withContentDescription("Favorites"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.tabs),
+                                        0),
+                                1),
+                        isDisplayed()));
+        tabView.perform(click());
+
+        ViewInteraction viewPager = onView(
+                allOf(withId(R.id.container),
+                        childAtPosition(
+                                allOf(withId(R.id.main_content),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        viewPager.perform(swipeLeft());
+
+        ViewInteraction viewGroup = onView(
+                allOf(childAtPosition(
+                        allOf(withId(R.id.list_neighbours),
+                                withParent(withId(R.id.container))),
+                        0),
+                        isDisplayed()));
+        viewGroup.check(matches(isDisplayed()));
     }
+
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
@@ -131,7 +172,5 @@ public class NeighboursListTest {
             }
         };
     }
-
-
 
 }
