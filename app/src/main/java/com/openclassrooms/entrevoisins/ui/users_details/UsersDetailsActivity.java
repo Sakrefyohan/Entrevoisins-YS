@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.users_details;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,10 +16,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.events.UsersDetailsEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourPagerAdapter;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.w3c.dom.Text;
 
 import butterknife.BindView;
@@ -77,24 +80,30 @@ public class UsersDetailsActivity extends AppCompatActivity {
         Glide.with(this).load(neighbour.getAvatarUrl()).into(mPicture);
 
 
-        //Expression ternaire
+        //Ternary expression
         mFavButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), neighbour.getNeighbourIsFav() ? R.drawable.ic_star_fav : R.drawable.ic_star_nofav, null));
-
 
 
     }
 
-    // Clique sur le bouton Fav
-    // Modification de l'etat du voisin
+    // Click on the Fav button
+    // Changing the neighbour's condition
     @OnClick(R.id.neighbours_info_fav_button)
     void setFavButton(View view) {
 
         neighbour.setNeighbourIsFav(!neighbour.getNeighbourIsFav());
         mApiService = DI.getNeighbourApiService();
         mApiService.changeFavoriteNeighbour(neighbour.getId());
-        //Expression ternaire
         mFavButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), neighbour.getNeighbourIsFav() ? R.drawable.ic_star_fav : R.drawable.ic_star_nofav, null));
 
+    }
+
+    @Subscribe
+    public void onUserDetails(UsersDetailsEvent event) {
+
+        Intent userDetails = new Intent(getContext(), UsersDetailsActivity.class);
+        userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
+        startActivity(userDetails);
     }
 
 

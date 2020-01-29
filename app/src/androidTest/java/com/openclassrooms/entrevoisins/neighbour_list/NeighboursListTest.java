@@ -48,7 +48,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 public class NeighboursListTest {
 
     // This is fixed
-    private static int ITEMS_COUNT = 12;
+    private static int ITEMS_COUNT = 11;
 
     private ListNeighbourActivity mActivity;
 
@@ -68,7 +68,7 @@ public class NeighboursListTest {
                 allOf(withId(R.id.list_neighbours),
                         isDisplayed()));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
-        //Ici on check la présence de l'avatar pour prouver que l'activité c'est bien lancé
+        // Here we check the presence of the avatar to prove that the activity has started.
         onView(withId(R.id.neighbours_info_picture)).check(matches(isDisplayed()));
     }
 
@@ -88,12 +88,12 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
-        onView(ViewMatchers.withId(R.id.list_neighbours))
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT-1));
     }
 
         @Test
@@ -171,6 +171,8 @@ public class NeighboursListTest {
                         && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
+
+
     }
 
 }

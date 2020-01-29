@@ -39,6 +39,26 @@ public class NeighbourServiceTest {
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
+    //Test for deletion from favorites list
+    @Test
+    public void deleteNeighbourFavoritesWithSuccess() {
+        // Recover a neigbour
+        List<Neighbour> neighbours = service.getNeighbours();
+        // Put a favorite neighbor
+        service.changeFavoriteNeighbour(neighbours.get(0).getId());
+        // Get the list of favorite neighbors
+        List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
+        // Check that there is a neighbor in the favorites list
+        assertEquals(neighboursFavorites.size(), 1);
+        // Delete a neighbor
+        Neighbour neighbourToDelete = service.getFavoriteNeighbour().get(0);
+        service.deleteNeighbour(neighbourToDelete);
+        // Check if the list contains the neighbors to be deleted
+        assertFalse(service.getFavoriteNeighbour().contains(neighbourToDelete));
+
+
+    }
+
     @Test
     public void deleteNeighbourWithSuccess() {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
@@ -46,9 +66,8 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
-    //Test créer
 
-    //Test Liste favoris de voisins
+    //Test Favourite list of neighbours
     @Test
     public void getNeighbourFavoritesWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
@@ -60,24 +79,6 @@ public class NeighbourServiceTest {
 
     }
 
-    //Test de suppression de la liste des favoris
-    @Test
-    public void deleteNeighbourFavoritesWithSuccess() {
-        //Recupere un neigbour
-        List<Neighbour> neighbours = service.getNeighbours();
-        //Mets un neighbour favoris
-        service.changeFavoriteNeighbour(neighbours.get(0).getId());
-        //Recupere la liste des neighbour favoris
-        List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
-        //Verifie qu'il y a bien un voisin dans la liste favoris
-        assertEquals(neighboursFavorites.size(), 1);
-        //Supprime un voisin
-        Neighbour neighbourToDelete = service.getFavoriteNeighbour().get(0);
-        service.deleteNeighbour(neighbourToDelete);
-        //Verifier si la liste contient bien le voisins a supprimer
-        assertFalse(service.getFavoriteNeighbour().contains(neighbourToDelete));
 
-
-    }
 }
 

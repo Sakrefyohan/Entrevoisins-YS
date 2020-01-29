@@ -47,9 +47,9 @@ public class NeighbourFragment extends Fragment {
 
     public static NeighbourFragment newInstance(boolean isFav) {
         NeighbourFragment fragment = new NeighbourFragment();
-        //Creation du bundle de favoris
+        //Creation of the favorites bundle
         Bundle favoriteNeighbour= new Bundle();
-        //Ajout de la valeur dans le bundle
+        //Adding the value in the bundle
         favoriteNeighbour.putBoolean(NEIGHBOURFAV, isFav);
         fragment.setArguments(favoriteNeighbour);
         return fragment;
@@ -120,7 +120,9 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-
+/** Bug Here
+ * Try to subscribe in UsersDetailsActivity
+ *
     @Subscribe
     public void onUserDetails(UsersDetailsEvent event) {
 
@@ -128,4 +130,5 @@ public class NeighbourFragment extends Fragment {
     userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
     startActivity(userDetails);
     }
+ */
 }

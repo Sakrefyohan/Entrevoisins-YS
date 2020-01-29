@@ -4,7 +4,7 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 public class UsersDetailsEvent {
 
-    // Activité a lancer
+    // Activity to launch
 
     public Neighbour mNeighbour;
 
