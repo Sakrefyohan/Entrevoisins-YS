@@ -98,14 +98,6 @@ public class UsersDetailsActivity extends AppCompatActivity {
 
     }
 
-    @Subscribe
-    public void onUserDetails(UsersDetailsEvent event) {
-
-        Intent userDetails = new Intent(getContext(), UsersDetailsActivity.class);
-        userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
-        startActivity(userDetails);
-    }
-
 
 }
 

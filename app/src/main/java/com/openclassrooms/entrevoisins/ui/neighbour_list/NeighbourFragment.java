@@ -120,9 +120,7 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-/** Bug Here
- * Try to subscribe in UsersDetailsActivity
- *
+
     @Subscribe
     public void onUserDetails(UsersDetailsEvent event) {
 
@@ -130,5 +128,5 @@ public class NeighbourFragment extends Fragment {
     userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
     startActivity(userDetails);
     }
- */
+
 }
