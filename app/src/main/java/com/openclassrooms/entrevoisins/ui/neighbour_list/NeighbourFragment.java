@@ -41,14 +41,13 @@ public class NeighbourFragment extends Fragment {
      */
 
     /**
-     *
-     *  Adding a fav Boolean isFav
+     * Adding a fav Boolean isFav
      */
 
     public static NeighbourFragment newInstance(boolean isFav) {
         NeighbourFragment fragment = new NeighbourFragment();
         //Creation of the favorites bundle
-        Bundle favoriteNeighbour= new Bundle();
+        Bundle favoriteNeighbour = new Bundle();
         //Adding the value in the bundle
         favoriteNeighbour.putBoolean(NEIGHBOURFAV, isFav);
         fragment.setArguments(favoriteNeighbour);
@@ -81,13 +80,14 @@ public class NeighbourFragment extends Fragment {
     private void initList() {
 
 
-        if(neighbourIsFavFragment){
+        if (neighbourIsFavFragment) {
             mNeighbours = mApiService.getFavoriteNeighbour();
             mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
 
-        }else{
+        } else {
             mNeighbours = mApiService.getNeighbours();
-            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));}
+            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        }
 
 
     }
@@ -112,6 +112,7 @@ public class NeighbourFragment extends Fragment {
 
     /**
      * Fired if the user clicks on a delete button
+     *
      * @param event
      */
     @Subscribe
@@ -124,9 +125,12 @@ public class NeighbourFragment extends Fragment {
     @Subscribe
     public void onUserDetails(UsersDetailsEvent event) {
 
-    Intent userDetails = new Intent(getContext(), UsersDetailsActivity.class);
-    userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
-    startActivity(userDetails);
+
+        if (neighbourIsFavFragment) {
+            Intent userDetails = new Intent(getContext(), UsersDetailsActivity.class);
+            userDetails.putExtra(NEIGHBOUR, event.mNeighbour);
+            startActivity(userDetails);
+        }
     }
 
 }
