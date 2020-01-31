@@ -27,9 +27,32 @@ public class NeighbourServiceTest {
     private NeighbourApiService service;
 
 
+
     @Before
     public void setup() {
         service = DI.getNewInstanceApiService();
+    }
+
+
+    //Test for deletion from favorites list
+    @Test
+    public void deleteNeighbourFavoritesWithSuccess() {
+
+        // Recover a neigbour
+
+        List<Neighbour> neighbours = service.getNeighbours();
+        // Put a favorite neighbor
+        service.changeFavoriteNeighbour(neighbours.get(0).getId());
+        // Get the list of favorite neighbors
+        List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
+        // Check that there is a neighbor in the favorites list
+        assertEquals(neighboursFavorites.size(), 1);
+        // Unfavoriting neigbour
+        service.changeFavoriteNeighbour(neighboursFavorites.get(0).getId());
+        // Check if the neighbour have been unfavorited
+        assertEquals(neighboursFavorites.size(), 0);
+
+
     }
 
     @Test
@@ -39,25 +62,7 @@ public class NeighbourServiceTest {
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
-    //Test for deletion from favorites list
-    @Test
-    public void deleteNeighbourFavoritesWithSuccess() {
-        // Recover a neigbour
-        List<Neighbour> neighbours = service.getNeighbours();
-        // Put a favorite neighbor
-        service.changeFavoriteNeighbour(neighbours.get(0).getId());
-        // Get the list of favorite neighbors
-        List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
-        // Check that there is a neighbor in the favorites list
-        assertEquals(neighboursFavorites.size(), 1);
-        // Delete a neighbor
-        Neighbour neighbourToDelete = service.getFavoriteNeighbour().get(0);
-        service.deleteNeighbour(neighbourToDelete);
-        // Check if the list contains the neighbors to be deleted
-        assertFalse(service.getFavoriteNeighbour().contains(neighbourToDelete));
 
-
-    }
 
     @Test
     public void deleteNeighbourWithSuccess() {

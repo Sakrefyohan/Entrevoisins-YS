@@ -54,9 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="25dp"
-            android:text="Caroline"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="25dp"
             android:textColor="#383838"
             android:textSize="33sp" />
 
@@ -89,8 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:textColor="#464646"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -116,8 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:textColor="#464646"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -125,7 +124,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -144,8 +142,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:textColor="#464646"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -174,10 +172,9 @@
             android:layout_height="20dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="15dp"
             android:text="A propos de moi"
             android:textColor="#383838"
@@ -194,10 +191,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp" />
 
 
     </LinearLayout>
