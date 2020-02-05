@@ -28,33 +28,43 @@ List of test in **NeighbourListTest**
 
 1st Test : This test perform the fact that the screen of the details of the user is well launch on the click of a neighbour.
 ```
-1st - myNeighbourList_ClickOnContact_ShouldLaunchUsersDetails
+myNeighbourList_ClickOnContact_ShouldLaunchUsersDetails
 ```
 
 2nd Test : This test should verify if the username of the user is the good one while clicking on a neighbour.
 ```
-2nd - myNeighbourList_ClickOnContact_ShouldDisplayUsername
+myNeighbourList_ClickOnContact_ShouldDisplayUsername
 ```
 
 3rd Test : This test should verify after the click on the delete button if the neighbour is well removed.
 ```
-3rd - myNeighboursList_deleteAction_shouldRemoveItem
+myNeighboursList_deleteAction_shouldRemoveItem
 ```
 
 4th Test : This test should verify if in the fav tab only the favorite user are display.
 ```
-4th - myNeighboursList_deleteAction_shouldRemoveItem
+myNeighboursList_deleteAction_shouldRemoveItem
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To deploy the app follow the below instructions : 
+
+```
+- Open the project on Android Studio
+- click on "Build" in the top tab
+- and then "Build APK(s)"
+```
+
+If you want to just start the application, you can simply launch it trough the start button after selecting "app"
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [ButterKnife](https://jakewharton.github.io/butterknife/) - Used to bindView from the interface to the code app
+* [Gradle](https://gradle.org/) - Dependency Management
+* [Espresso](https://developer.android.com/training/testing/espresso) - Used to performe the test
+* [Glide](https://github.com/bumptech/glide) - An image loading and caching library for Android focused on smooth scrolling
+* [EventBus](https://github.com/greenrobot/EventBus) - Used to simplifies communication between Activities, Fragments, Threads, Services, etc.
 
 ## Contributing
 
