@@ -69,10 +69,6 @@ If you want to just start the application, you can simply launch it trough the s
 
 Sorry but you can't contribute as this is my project to validate my formation in OpenClassrooms.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
 * **Yohan Sakref** - *Initial work* - [Sakrefyohan](https://github.com/Sakrefyohan)
