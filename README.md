@@ -7,24 +7,45 @@ Ce dépôt contient une mini-application pour le P3 du parcours **Grande École 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 
-+## Running the tests
+## Running the tests
 
-Explain how to run the automated tests for this system
+To run the test you have to run "NeighbourListTest" or "NeighbourServiceTest" you can locate them here :
+
+```
+- com.openclassrooms.entrevoisins
+	--> neighbour_list 
+		--> NeighbourListTest
+- com.openclassrooms.entrevoisins.service
+	--> NeighbourServiceTest
+		
+```
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
+With this 2 class of test we regroup all the tests we need for all of our functionnality
 
+List of test in **NeighbourListTest**
+
+1st Test : 
+
+This test perform the fact that the screen of the details of the user is well launch on the click of a neighbour.
+
+2nd Test : 
+
+This test should verify if the username of the user is the good one while clicking on a neighbour.
+
+3rd Test : 
+
+This test should verify after the click on the delete button if the neighbour is well removed.
+
+4th Test : 
+
+This test should verify if in the fav tab only the favorite user are display.
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+1st - myNeighbourList_ClickOnContact_ShouldLaunchUsersDetails
+2nd - myNeighbourList_ClickOnContact_ShouldDisplayUsername
+3rd - myNeighboursList_deleteAction_shouldRemoveItem
+4th - myNeighboursList_deleteAction_shouldRemoveItem
 ```
 
 ## Deployment
