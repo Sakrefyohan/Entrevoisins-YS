@@ -1,4 +1,4 @@
-# OpenClassrooms
+# Entrevois - Yohan Sakref
 
 Ce dépôt contient une mini-application pour le P3 du parcours **Grande École du Numérique**.
 
@@ -26,22 +26,22 @@ With this 2 class of test we regroup all the tests we need for all of our functi
 
 List of test in **NeighbourListTest**
 
-1st Test : This test perform the fact that the screen of the details of the user is well launch on the click of a neighbour.
+* 1st Test : This test perform the fact that the screen of the details of the user is well launch on the click of a neighbour.
 ```
 myNeighbourList_ClickOnContact_ShouldLaunchUsersDetails
 ```
 
-2nd Test : This test should verify if the username of the user is the good one while clicking on a neighbour.
+* 2nd Test : This test should verify if the username of the user is the good one while clicking on a neighbour.
 ```
 myNeighbourList_ClickOnContact_ShouldDisplayUsername
 ```
 
-3rd Test : This test should verify after the click on the delete button if the neighbour is well removed.
+* 3rd Test : This test should verify after the click on the delete button if the neighbour is well removed.
 ```
 myNeighboursList_deleteAction_shouldRemoveItem
 ```
 
-4th Test : This test should verify if in the fav tab only the favorite user are display.
+* 4th Test : This test should verify if in the fav tab only the favorite user are display.
 ```
 myNeighboursList_deleteAction_shouldRemoveItem
 ```
@@ -68,7 +68,7 @@ If you want to just start the application, you can simply launch it trough the s
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Sorry but you can't contribute as this is my project to validate my formation in OpenClassrooms.
 
 ## Versioning
 
@@ -76,16 +76,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Yohan Sakref** - *Initial work* - [Sakrefyohan](https://github.com/Sakrefyohan)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* thanks to my mentor who help me to achieve this project.
