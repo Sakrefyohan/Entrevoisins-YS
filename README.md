@@ -1,6 +1,6 @@
 # Entrevoisin - Yohan Sakref
 
-Ce dépôt contient une mini-application pour le P3 du parcours **Grande École du Numérique**.
+This repository contains a mini-application for the P3 from OpenClassrooms course. Modified by me.
 
 ## Getting Started
 
@@ -16,8 +16,7 @@ To run the test you have to run "NeighbourListTest" or "NeighbourServiceTest" yo
 	--> neighbour_list 
 		--> NeighbourListTest
 - com.openclassrooms.entrevoisins.service
-	--> NeighbourServiceTest
-		
+	--> NeighbourServiceTest	
 ```
 
 ### Break down into end to end tests
