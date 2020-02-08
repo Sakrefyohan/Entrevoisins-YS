@@ -176,7 +176,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="15dp"
-            android:text="A propos de moi"
+            android:text="@string/a_propos_de_moi"
             android:textColor="#383838"
             android:textSize="33sp" />
 

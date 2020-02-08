@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
@@ -24,6 +26,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -34,12 +37,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.StringContains.containsString;
 
 
-//Test Instrumentalisé
+//Instrumentalized Test
 
 /**
  * Test class for list of neighbours
@@ -73,13 +78,16 @@ public class NeighboursListTest {
     }
 
     @Test
-    public void myNeighbourList_ClickOnContact_ShouldDisplayUsername(){
+    public void myNeighbourList_ClickOnContact_ShouldDisplayUsername() {
+        NeighbourApiService service = DI.getNewInstanceApiService();
+
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
                         isDisplayed()));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
         //Checking if the username display well
-        onView(withId(R.id.neighbours_info_name_small)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.neighbours_info_name_small)).check(matches(withText(containsString(service.getNeighbours().get(0).getName()))));
     }
 
     /**
@@ -88,70 +96,34 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
-        onView(allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT));
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
-        onView(allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
-        onView(allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed())).check(withItemCount(ITEMS_COUNT-1));
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(ITEMS_COUNT - 1));
     }
 
-        @Test
+    @Test
     public void myNeighbourList_DisplayFavList_ShouldDisplayOnlyFavoritesNeighbour() {
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
-                        withParent(withId(R.id.container)),isDisplayed()));
+                        withParent(withId(R.id.container)), isDisplayed()));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
 
         ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.neighbours_info_fav_button),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
+                withId(R.id.neighbours_info_fav_button));
+
         floatingActionButton.perform(click());
 
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Navigate up"),
-                        childAtPosition(
-                                allOf(withId(R.id.action_bar),
-                                        childAtPosition(
-                                                withId(R.id.action_bar_container),
-                                                0)),
-                                0),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
+        pressBack();
 
         ViewInteraction tabView = onView(
-                allOf(withContentDescription("Favorites"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.tabs),
-                                        0),
-                                1),
-                        isDisplayed()));
+                withContentDescription("Favorites"));
         tabView.perform(click());
 
-        ViewInteraction viewPager = onView(
-                allOf(withId(R.id.container),
-                        childAtPosition(
-                                allOf(withId(R.id.main_content),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        viewPager.perform(swipeLeft());
+        onView(allOf(ViewMatchers.withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(1));
 
-        ViewInteraction viewGroup = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.list_neighbours),
-                                withParent(withId(R.id.container))),
-                        0),
-                        isDisplayed()));
-        viewGroup.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(

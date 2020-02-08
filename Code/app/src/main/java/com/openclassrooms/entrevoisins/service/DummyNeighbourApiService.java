@@ -29,6 +29,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         {
             if(neighbour.getId() == id){
                 neighbour.setNeighbourIsFav(!neighbour.getNeighbourIsFav());
+                break;
             }
 
         }

@@ -39,18 +39,19 @@ public class NeighbourServiceTest {
     public void deleteNeighbourFavoritesWithSuccess() {
 
         // Recover a neigbour
-
+        NeighbourApiService service = DI.getNewInstanceApiService();
         List<Neighbour> neighbours = service.getNeighbours();
         // Put a favorite neighbor
         service.changeFavoriteNeighbour(neighbours.get(0).getId());
         // Get the list of favorite neighbors
         List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
         // Check that there is a neighbor in the favorites list
-        assertEquals(neighboursFavorites.size(), 1);
+        assertEquals(1, neighboursFavorites.size());
         // Unfavoriting neigbour
         service.changeFavoriteNeighbour(neighboursFavorites.get(0).getId());
+        neighboursFavorites = service.getFavoriteNeighbour();
         // Check if the neighbour have been unfavorited
-        assertEquals(neighboursFavorites.size(), 0);
+        assertEquals(0, neighboursFavorites.size());
 
 
     }
@@ -74,13 +75,18 @@ public class NeighbourServiceTest {
 
     //Test Favourite list of neighbours
     @Test
-    public void getNeighbourFavoritesWithSuccess() {
+    public void addNeighbourFavoritesWithSuccess() {
+        NeighbourApiService service = DI.getNewInstanceApiService();
         List<Neighbour> neighbours = service.getNeighbours();
         service.changeFavoriteNeighbour(neighbours.get(0).getId());
         service.changeFavoriteNeighbour(neighbours.get(1).getId());
         service.changeFavoriteNeighbour(neighbours.get(2).getId());
         List<Neighbour> neighboursFavorites = service.getFavoriteNeighbour();
         assertEquals(neighboursFavorites.size(), 3);
+        service.changeFavoriteNeighbour(neighbours.get(0).getId());
+        service.changeFavoriteNeighbour(neighbours.get(1).getId());
+        service.changeFavoriteNeighbour(neighbours.get(2).getId());
+        assertEquals(service.getFavoriteNeighbour().size(), 0);
 
     }
 
